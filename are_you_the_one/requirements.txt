@@ -1,0 +1,4 @@
+Django==2.1.2
+django-bootstrap3==11.0.0
+pytz==2018.5
+SQLAlchemy==1.2.11
