@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Match Up Participants</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'matchups/style.css' %}">
+</head>
+<body>
+
+<h3>Create Matchups</h3>
+
+<form action="/matchups/matchups" method="post">
+    {% csrf_token %}
+    {{ form.as_ul }}
+    <input type="submit" value="Create Match">
+</form>
+
+<h3>Current Matchups</h3>
+{% if pairs %}
+    <ul>
+    {% for pair in pairs %}
+        <option>
+        {% if pair.0.person_two_first_name %}
+            {{ pair.0.person_one_first_name }} {{ pair.0.person_one_last_name }}/
+            {{ pair.0.person_two_first_name }} {{ pair.0.person_two_last_name }}
+        {% else %}
+            {{ pair.0.person_one_first_name }} {{ pair.0.person_one_last_name }}
+        {% endif %}
+            WITH
+        {% if pair.1.person_two_first_name %}
+            {{ pair.1.person_one_first_name }} {{ pair.1.person_one_last_name }} /
+            {{ pair.1.person_two_first_name }} {{ pair.1.person_two_last_name }}
+        {% else %}
+            {{ pair.1.person_one_first_name }} {{ pair.1.person_one_last_name }}
+        {% endif %}
+        </option>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No pairs available.</p>
+{% endif %}
+
+<a href="{% url 'remove_matchups' %}">Remove Matchups</a>
+<a href="{% url 'check_match' %}">Check Match Page</a>
+
+</body>
+</html>

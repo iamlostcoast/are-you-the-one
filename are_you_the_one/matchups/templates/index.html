@@ -1,0 +1,75 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Are You The One Matchup Selection</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'matchups/style.css' %}">
+</head>
+
+<body>
+<h3>Select First Participant</h3>
+{% if participants_one %}
+    <select>
+    {% for participant in participants_one %}
+        {% if participant.person_two_first_name %}
+            <option>
+                {{ participant.person_one_first_name }} {{ participant.person_one_last_name }} /
+                {{ participant.person_two_first_name }} {{ participant.person_two_last_name }}</option>
+        {% else %}
+            <option>{{ participant.person_one_first_name }} {{ participant.person_one_last_name }}</option>
+        {% endif %}
+    {% endfor %}
+    </select>
+{% else %}
+    <p>No first participants available.</p>
+{% endif %}
+
+<h3>Select Second Participant</h3>
+{% if participants_two %}
+    <select>
+    {% for participant in participants_two %}
+        {% if participant.person_two_first_name %}
+            <option>
+                {{ participant.person_one_first_name }} {{ participant.person_one_last_name }} /
+                {{ participant.person_two_first_name }} {{ participant.person_two_last_name }}</option>
+        {% else %}
+            <option>{{ participant.person_one_first_name }} {{ participant.person_one_last_name }}</option>
+        {% endif %}
+    {% endfor %}
+    </select>
+{% else %}
+    <p>No second participants available.</p>
+{% endif %}
+
+<h3>Pairs</h3>
+{% if pairs %}
+    <ul>
+    {% for pair in pairs %}
+        <option>
+        {% if pair.0.person_two_first_name %}
+            {{ pair.0.person_one_first_name }} {{ pair.0.person_one_last_name }}/
+            {{ pair.0.person_two_first_name }} {{ pair.0.person_two_last_name }}
+        {% else %}
+            {{ pair.0.person_one_first_name }} {{ pair.0.person_one_last_name }}
+        {% endif %}
+            WITH
+        {% if pair.1.person_two_first_name %}
+            {{ pair.1.person_one_first_name }} {{ pair.1.person_one_last_name }} /
+            {{ pair.1.person_two_first_name }} {{ pair.1.person_two_last_name }}
+        {% else %}
+            {{ pair.1.person_one_first_name }} {{ pair.1.person_one_last_name }}
+        {% endif %}
+        </option>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No pairs available.</p>
+{% endif %}
+
+
+</body>
+</html>
+

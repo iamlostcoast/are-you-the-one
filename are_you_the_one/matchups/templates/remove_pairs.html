@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Remove Pairs</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'matchups/style.css' %}">
+<html lang="en">
+<body>
+<h3>Remove Pairs</h3>
+{% if pairs %}
+    <form action="/matchups/remove_matchups" method="POST">
+        {% csrf_token %}
+        {% for pair in pairs %}
+            <input type="radio" name="match_id" value={{pair.0.match_id}}>
+            {% if pair.0.person_two_first_name %}
+                {{ pair.0.person_one_first_name }} {{ pair.0.person_one_last_name }}/
+                {{ pair.0.person_two_first_name }} {{ pair.0.person_two_last_name }}
+            {% else %}
+                {{ pair.0.person_one_first_name }} {{ pair.0.person_one_last_name }}
+            {% endif %}
+                WITH
+            {% if pair.1.person_two_first_name %}
+                {{ pair.1.person_one_first_name }} {{ pair.1.person_one_last_name }} /
+                {{ pair.1.person_two_first_name }} {{ pair.1.person_two_last_name }}
+            {% else %}
+                {{ pair.1.person_one_first_name }} {{ pair.1.person_one_last_name }}
+            {% endif %}
+            </input><br>
+        {% endfor %}
+        <input type="submit" value="Remove Match">
+    </form>
+{% else %}
+    <p>No pairs available.</p>
+{% endif %}
+
+<a href="{% url 'matchups' %}">Create Matchups</a>
+<a href="{% url 'check_match' %}">Check Match Page</a>
+
+</body>
+</html>

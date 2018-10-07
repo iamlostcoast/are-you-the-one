@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Perfect Match</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'matchups/style.css' %}">
+</head>
+<body>
+
+<H1>Perfect Match!</H1>
+
+<h3>
+    {% if first.person_two_first_name %}
+        {{ first.person_one_first_name }} {{ first.person_one_last_name }} /
+        {{ first.person_two_first_name }} {{ first.person_two_last_name }}
+    {% else %}
+        {{ first.person_one_first_name }} {{ first.person_one_last_name }}
+    {% endif %}
+        with
+    {% if second.person_two_first_name %}
+        {{ second.person_one_first_name }} {{ second.person_one_last_name }} /
+        {{ second.person_two_first_name }} {{ second.person_two_last_name }}
+    {% else %}
+        {{ second.person_one_first_name }} {{ second.person_one_last_name }}
+    {% endif %}
+</h3>
+
+<a href="{% url 'check_match' %}">Back To Check Match Page</a>
+
+
+</body>
+</html>

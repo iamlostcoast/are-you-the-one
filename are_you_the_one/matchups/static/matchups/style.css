@@ -1,0 +1,90 @@
+body {
+  font-family: 'AauxNextCond-Bold', sans-serif;
+  background-color: #f843f2ad;
+  font-size: 25px;
+  text-transform: uppercase;
+  background-image: repeating-linear-gradient(-45deg,
+      transparent,
+      transparent 20px,
+      #eb54ff 20px,
+      #eb54ff 40px);
+}
+
+select .option {
+    display:inline-block;
+    vertical-align:top;
+    overflow:hidden;
+    border:solid grey 1px;
+    font-size: 15px;
+}
+
+H1 {
+  background-color: #000000ab;
+  color: #ffff6c;
+  margin-left: -10px;
+  margin-right: -10px;
+  padding: 30px;
+  text-align: center;
+}
+
+H3 {
+  background-color: #000000ab;
+  color: #ffff6c;
+  margin-left: -10px;
+  margin-right: -10px;
+  padding: 30px;
+  text-align: center;
+}
+
+a {
+  background-color: #ffdafa;
+  border-radius: 2px;
+  padding: 3px;
+}
+
+form {
+  background-color: #000000cc;
+  color: white;
+  border-radius: 5px;
+  margin: 50px;
+  padding: 10px;
+}
+
+select {
+    padding:10px;
+    margin: 10px -20px -5px -5px;
+    width: 350px
+    font-size: 20px;
+}
+
+ul {
+  background-color: #9f78da;
+  padding: 10px;
+  width: 900px;
+  font-size: 20px;
+  color: white;
+}
+
+li {
+  list-style: none;
+  padding: 5px;
+}
+
+input[type=submit] {
+    background-color: #ffff6c;
+    border: none;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    border-radius: 10px;
+    margin: 10px;
+    border-style: solid;
+    border-color: white
+}
+
+input[type=submit]:hover {
+  background-color: #e6e600;
+}

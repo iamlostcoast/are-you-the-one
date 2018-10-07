@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Check Matchups</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'matchups/style.css' %}">
+
+</head>
+<body>
+<img src="{% static 'images/ayto_web_series_hero_1920x540_081518.jpg' %}">
+
+<H1>Check For Perfect Match</H1>
+<form action="/matchups/check_match" method="post">
+    {% csrf_token %}
+    {{ form.as_ul }}
+    <input type="submit" value="Check Match">
+</form>
+</body>
+</html>
