@@ -12,7 +12,7 @@
 
 <img src="{% static 'images/ayto_web_series_hero_1920x540_081518.jpg' %}">
 
-<H1>Perfect Match!</H1>
+<H1>{{ match_message }}</H1>
 
 <h3>
     {% if first.person_two_first_name %}
@@ -21,7 +21,7 @@
     {% else %}
         {{ first.person_one_first_name }} {{ first.person_one_last_name }}
     {% endif %}
-        with
+        +
     {% if second.person_two_first_name %}
         {{ second.person_one_first_name }} {{ second.person_one_last_name }} /
         {{ second.person_two_first_name }} {{ second.person_two_last_name }}
@@ -30,6 +30,21 @@
     {% endif %}
 </h3>
 
+<ul>
+    <li>Remaining Guesses:</li>
+    <li>- {% if first.person_two_first_name %}
+        {{ first.person_one_first_name }} {{ first.person_one_last_name }} /
+        {{ first.person_two_first_name }} {{ first.person_two_last_name }}
+    {% else %}
+        {{ first.person_one_first_name }} {{ first.person_one_last_name }}
+        {% endif %}: {{ first_remaining }}</li>
+    <li>- {% if second.person_two_first_name %}
+        {{ second.person_one_first_name }} {{ second.person_one_last_name }} /
+        {{ second.person_two_first_name }} {{ second.person_two_last_name }}
+    {% else %}
+        {{ second.person_one_first_name }} {{ second.person_one_last_name }}
+        {% endif %}: {{ second_remaining }}</li>
+</ul>
 <a href="{% url 'check_match' %}">Back To Check Match Page</a>
 
 

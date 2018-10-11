@@ -43,10 +43,10 @@ class CheckMatchForm(forms.Form):
         if second_participant.password != second_participant_password:
             raise ValidationError(_('Second Participant password incorrect'))
 
-        if first_participant.queries >= 5:
+        if first_participant.queries >= first_participant.query_limit:
             raise ValidationError(_('{} has already reached their limit of guesses!').format(
                 first_participant.person_one_first_name))
 
-        if second_participant.queries >= 5:
+        if second_participant.queries >= second_participant.query_limit:
             raise ValidationError(_('{} has already reached their limit of guesses!').format(
                 second_participant.person_one_first_name))

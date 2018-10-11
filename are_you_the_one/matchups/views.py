@@ -1,3 +1,5 @@
+import datetime
+
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
@@ -82,12 +84,23 @@ def check_match(request):
             second_participant.queries += 1
             first_participant.save()
             second_participant.save()
+            context = {'first': first_participant,
+                       'second': second_participant,
+                       'first_remaining': first_participant.query_limit - first_participant.queries,
+                       'second_remaining': second_participant.query_limit - second_participant.queries,
+                       'match_message': None}
             if first_participant.match_id == second_participant.id:
-                return render(request, 'perfect_match.html', {'first': first_participant,
-                                                              'second': second_participant})
+                first_participant.found_match = True
+                second_participant.found_match = True
+                first_participant.found_match_timestamp = datetime.datetime.now()
+                second_participant.found_match_timestamp = datetime.datetime.now()
+                first_participant.save()
+                second_participant.save()
+                context['match_message'] = "Perfect Match!"
+                return render(request, 'perfect_match.html', context)
             else:
-                return render(request, 'no_match.html', {'first': first_participant,
-                                                         'second': second_participant})
+                context['match_message'] = "No Match"
+                return render(request, 'no_match.html', context)
     else:
         form = CheckMatchForm()
     return render(request, 'check_matchup.html', {'form': form})

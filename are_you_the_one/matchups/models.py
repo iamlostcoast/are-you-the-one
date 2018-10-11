@@ -10,7 +10,10 @@ class Participant(models.Model):
     person_two_last_name = models.CharField(max_length=50, null=True, blank=True)
     password = models.CharField(max_length=50)
     queries = models.IntegerField(default=0)
+    query_limit = models.IntegerField(default=5)
     match_id = models.IntegerField(null=True, blank=True)
+    found_match = models.BooleanField(default=False)
+    found_match_timestamp = models.DateTimeField(null=True, blank=True)
 
     # USERNAME_FIELD = 'username'
 
